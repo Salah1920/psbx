@@ -3,123 +3,122 @@ title: "Projet_R_package_ggplot2"
 output: pdf_document
 ---
 
-## 1 Présentation du package 
+#1 PrÃ©sentation du package 
 
-#ggplot2 est un système de création déclarative de graphiques, basé sur The Grammar of Graphics. Vous fournissez les données, dites à ggplot2 comment mapper les variables à l'esthétique, quelles primitives graphiques utiliser et il s'occupe des détails.
+#ggplot2 est un systÃ¨me de crÃ©ation dÃ©clarative de graphiques, basÃ© sur The Grammar of Graphics. Vous fournissez les donnÃ©es, dites Ã  ggplot2 comment mapper les variables Ã  l'esthÃ©tique, quelles primitives graphiques utiliser et il s'occupe des dÃ©tails.
 
-##2 Installation du package ggplot2
 
-#Comme tout package, il faut commencer par l'importer. Pour cela il y a plusieurs solutions. Personnellement, j'utilise l'onglet package sous R Studio (dans la fenêtre en bas à droite), puis le sous onglet install
+#2 Installation du package ggplot2
 
-#Une fois que le package est installé, il faut le charger :
+#Comme tout package, il faut commencer par l'importer. Pour cela il y a plusieurs solutions. Personnellement, j'utilise l'onglet package sous R Studio (dans la fenÃªtre en bas Ã  droite), puis le sous onglet install
+
+#Une fois que le package est installÃ©, il faut le charger :
 library(ggplot2)
+
 
 #3Principe de fonctionnement du package ggplot2
 
-#Le package ggplot2 fonctionne par couche successives. La première d'entre elles, est un peu le canevas du graph. Elle consiste à indiquer, dans quel jeu de données se trouve les données, et quelles sont les variables que l'on souhaite représenter. Ensuite, une seconde couche est ajoutée, elle consiste, par exemple, à indiquer le type de graph que l'on souhaite réaliser : scatterplot, boxplot, barplot etc. Viennent ensuite les couches d'affinage en quelque sorte, qui vont permettre de choisir les couleurs, les échelles des axes, les options de légende etc.
+#Le package ggplot2 fonctionne par couche successives. La premiÃ¨re d'entre elles, est un peu le canevas du graph. Elle consiste Ã  indiquer, dans quel jeu de donnÃ©es se trouve les donnÃ©es, et quelles sont les variables que l'on souhaite reprÃ©senter. Ensuite, une seconde couche est ajoutÃ©e, elle consiste, par exemple, Ã  indiquer le type de graph que l'on souhaite rÃ©aliser : scatterplot, boxplot, barplot etc. Viennent ensuite les couches d'affinage en quelque sorte, qui vont permettre de choisir les couleurs, les Ã©chelles des axes, les options de lÃ©gende etc.
 
-#2.1 Définition de la couche canevas
 
-#Pour définir ce que j'appelle la couche canevas, on utilise la fonction "ggplot()" et son argument "aes().". Les graphs construits avec ggplot2 commencent toujours par ce type de ligne de code :
+#2.1 DÃ©finition de la couche canevas
 
-```{r,results='hide'}
+#Pour dÃ©finir ce que j'appelle la couche canevas, on utilise la fonction "ggplot()" et son argument "aes().". Les graphs construits avec ggplot2 commencent toujours par ce type de ligne de code :
+
+
 ggplot(dataset, aes(x=, y = ))
-```
-
-#2.2 Définition du type de plot : geom_XXX
-
-#Il s'agit ensuite de définir le type de graph que l'on souhaite réaliser : un scatter plot, un boxplot, un barplot, etc. Pour cela, on rajoute un signe plus en bout de la première ligne (celle du canevas), et on ajoute une nouvelle ligne avec la fonction adéquate : geom_point() pour un scatter plot, geom_boxplot() pour un boxplot, geom_bar() pour un barplot etc.
 
 
-#Et pour connaître toutes les fonctions geom_XXX disponibles, elles sont décrites dans la partie "Geoms" de la cheatsheet du package ggplot. Vous pouvez la télécharger automatiquement en allant dans l'onglet Help -> Cheatsheets -> Data Visualization with ggplot2.
+#2.2 DÃ©finition du type de plot : geom_XXX
+
+#Il s'agit ensuite de dÃ©finir le type de graph que l'on souhaite rÃ©aliser : un scatter plot, un boxplot, un barplot, etc. Pour cela, on rajoute un signe plus en bout de la premiÃ¨re ligne (celle du canevas), et on ajoute une nouvelle ligne avec la fonction adÃ©quate : geom_point() pour un scatter plot, geom_boxplot() pour un boxplot, geom_bar() pour un barplot etc.
 
 
- #2.3 Définition des options du graph
+#Et pour connaÃ®tre toutes les fonctions geom_XXX disponibles, elles sont dÃ©crites dans la partie "Geoms" de la cheatsheet du package ggplot. Vous pouvez la tÃ©lÃ©charger automatiquement en allant dans l'onglet Help -> Cheatsheets -> Data Visualization with ggplot2.
+
+
+ #2.3 DÃ©finition des options du graph
  
-#Dans un troisième temps, on affine le graph, en précisant différentes couches concernant :
+#Dans un troisiÃ¨me temps, on affine le graph, en prÃ©cisant diffÃ©rentes couches concernant :
 
-#les échelles des axes : avec la fonctions scale_x_continuous(), par exemple
+#les Ã©chelles des axes : avec la fonctions scale_x_continuous(), par exemple
 #les couleurs : avec la fonction scale_colour_manual(), par exemple
 #les noms des axes, avec les fonctions xlab(), ylab(), par exemple
-#la légende avec, par exemple, avec la fonction theme(legend.position,="bottom")
+#la lÃ©gende avec, par exemple, avec la fonction theme(legend.position,="bottom")
  
  
-#3. Réaliser un scatterplot avec ggplot2
+#3. RÃ©aliser un scatterplot avec ggplot2
  #3.1 Le scatterplot de base
- #Imaginons que l'on souhaite réaliser un scatter plot avec le jeu de données iris, en représentant la base des données iris la variable Sepal.Length en y et la variable Sepal.Width en x :
+ #Imaginons que l'on souhaite rÃ©aliser un scatter plot avec le jeu de donnÃ©es iris, en reprÃ©sentant la base des donnÃ©es iris la variable Sepal.Length en y et la variable Sepal.Width en x :
  
-  ```{r}
+ 
 ggplot(iris, aes(x=Sepal.Width, y=Sepal.Length))+
         geom_point()
-```
 
-#3.2 Définir des couleurs selon une variable
 
-#Le jeu de données comporte, en réalité, trois espèces d'iris différentes (variable Species). Pour représenter les points avec une couleur différente par espèce, on va définir l'argument colour dans la fonction aes() de la partie "canevas" :
+#3.2 DÃ©finir des couleurs selon une variable
 
-```{r}
+#Le jeu de donnÃ©es comporte, en rÃ©alitÃ©, trois espÃ¨ces d'iris diffÃ©rentes (variable Species). Pour reprÃ©senter les points avec une couleur diffÃ©rente par espÃ¨ce, on va dÃ©finir l'argument colour dans la fonction aes() de la partie "canevas" :
+
+
 ggplot(iris, aes(x=Sepal.Width, y=Sepal.Length, colour=Species))+
         geom_point()
-```
 
-#3.4 Utiliser des formes de points différentes
+#3.4 Utiliser des formes de points diffÃ©rentes
 
  #Pour cela, on utilise l'argument shape dans aes() :
- ```{r }
+ 
   ggplot(iris, aes(x=Sepal.Width, y=Sepal.Length, colour=Species, shape=Species))+
         geom_point()+
         scale_colour_manual(values=c("magenta", "orange", "blue"))
  
-```
 
-#4 Réaliser un boxplot avec ggplot 2
+#4 RÃ©aliser un boxplot avec ggplot 2
 
  #4.1. Boxplot de base
-#Imaginons que l'on souhaite réaliser un boxplot de la variable Sepal.Length, par espèce. Pour cela, on utilise la fonction geom_boxplot().
-```{r}
+#Imaginons que l'on souhaite rÃ©aliser un boxplot de la variable Sepal.Length, par espÃ¨ce. Pour cela, on utilise la fonction geom_boxplot().
+
 ggplot(iris, aes( y=Sepal.Length,x=Species))+
         geom_boxplot()
-```
   
-#5 Réaliser des barplot avec ggplot2
+#5 RÃ©aliser des barplot avec ggplot2
 
-#Il existe deux types de barplot réalisables avec ggplot 2. Les premiers, que j'appelle "barplot de comptage", permettent de représenter un nombre de données dans chaque modalité d'une variable.
+#Il existe deux types de barplot rÃ©alisables avec ggplot 2. Les premiers, que j'appelle "barplot de comptage", permettent de reprÃ©senter un nombre de donnÃ©es dans chaque modalitÃ© d'une variable.
 
-#La seconde catégorie consiste a représenter un paramètre statistique comme une moyenne. Personnellement je suis complètement opposée ce type de graph, car ils ne permettent pas de visualiser le nombre de données, ni leur répartition, ni de la présence éventuelle d'outliers ! Dans cette situation il est préférable de faire un boxplot (surtout qu'il est possible d'y faire figurer la moyenne en plus de la médiane).
+#La seconde catÃ©gorie consiste a reprÃ©senter un paramÃ¨tre statistique comme une moyenne. Personnellement je suis complÃ¨tement opposÃ©e ce type de graph, car ils ne permettent pas de visualiser le nombre de donnÃ©es, ni leur rÃ©partition, ni de la prÃ©sence Ã©ventuelle d'outliers ! Dans cette situation il est prÃ©fÃ©rable de faire un boxplot (surtout qu'il est possible d'y faire figurer la moyenne en plus de la mÃ©diane).
 
 #Dans tous les cas, on utilise la fonction geom_bar().  
 
 #5.1 Barplot de comptage
-#En utilisant le jeu de données "mtcars", imaginons, par exemple, que je veuille représenter le nombre de voitures ayant 3,4 ou 5 vitesses (variables gear) :
+#En utilisant le jeu de donnÃ©es "mtcars", imaginons, par exemple, que je veuille reprÃ©senter le nombre de voitures ayant 3,4 ou 5 vitesses (variables gear) :
 
  #pas de y car c'est un comptage
   
         
-```{r}
+
 ggplot(mtcars,aes(as.factor(gear)))+
         geom_bar()
-```
-#J'utilise ici factor(gear) car cette variable est considérée comme une variable numérique
 
-#5.2 Barplot en représentant un paramètre statistique
+#J'utilise ici factor(gear) car cette variable est considÃ©rÃ©e comme une variable numÃ©rique
 
-#Par exemple, ici je vais représenter les moyennes de la variable mpg (miles per gallon) pour tous les croisements des modalités des variables gear (nombre de vitesses) et carb (nombre de carburateurs). Pour cela, il est nécessaire de fournir à la fonction ggplot, un jeu de données comportant ces moyennes. Une façon très simple de les obtenir est d'utiliser la fonction summarySE() du package Rmisc.
-```{r}
+#5.2 Barplot en reprÃ©sentant un paramÃ¨tre statistique
+
+#Par exemple, ici je vais reprÃ©senter les moyennes de la variable mpg (miles per gallon) pour tous les croisements des modalitÃ©s des variables gear (nombre de vitesses) et carb (nombre de carburateurs). Pour cela, il est nÃ©cessaire de fournir Ã  la fonction ggplot, un jeu de donnÃ©es comportant ces moyennes. Une faÃ§on trÃ¨s simple de les obtenir est d'utiliser la fonction summarySE() du package Rmisc.
+
+
 library(Rmisc)
-mpg.ag2<-summarySE(mtcars,measurevar="mpg", groupvars=c("gear","carb"))
-```
+mpg.ag2<-summarySE(mtcars,measurevar="mpg", groupvars=c("gear","carb")
 
 ##6. Le facetting
 
-#C'est une des grandes possibilités de ggplot2. Ca consiste à sous diviser un graph, selon les modalités d'une ou plusieurs variables. Ici par exemple, je vais utiliser le jeu de données Melanoma du package MASS, et je vais étudier les relations entre la variable thickness et time, pour chacune des modalités de la variable status :
+#C'est une des grandes possibilitÃ©s de ggplot2. Ca consiste Ã  sous diviser un graph, selon les modalitÃ©s d'une ou plusieurs variables. Ici par exemple, je vais utiliser le jeu de donnÃ©es Melanoma du package MASS, et je vais Ã©tudier les relations entre la variable thickness et time, pour chacune des modalitÃ©s de la variable status :
 
- ```{r}
+ 
  library(MASS)
  ggplot(Melanoma, aes(y=thickness, x=time))+
         geom_point()+
         geom_smooth()+
         facet_wrap(~status)
-```
 
 
 #head(Melanoma)
